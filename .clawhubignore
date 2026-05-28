@@ -1,0 +1,16 @@
+*
+
+!SKILL.md
+!.clawhubignore
+!README.md
+!LICENSE
+!.env.local.example
+
+!references/
+!references/*.md
+
+!scripts/
+!scripts/*.sample.sh
+
+!assets/
+!assets/*.md

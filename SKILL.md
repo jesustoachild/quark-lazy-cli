@@ -1,11 +1,8 @@
 ---
 name: quark-lazy-cli
 description: >-
-  基于 QAS（夸克网盘自动转存项目）的懒人追剧、追番 SKILL，也内置了一个 CLI 工具。即使 QAS
-  的剧集订阅失效，它也可以重新搜索资源、探查多级资源目录，并在多个最新候选资源中按用户偏好（如更高清晰度）转存新剧集和缺失剧集。可以交给本地
-  OpenClaw、Hermes Agent 或其他Claude Code, Codex Agent 使用，用来设置定时任务、定时汇报，并在订阅失败时辅助修复。有 Python
-  运行环境的进阶用户，也可以把它当作命令行工具使用。
-  
+  QAS/Quark lazy subscription maintenance skill with qslazy CLI guidance,
+  advisor modes, scheduled reports, and failed-update repair workflows.
 ---
 
 # quark-lazy-cli
