@@ -1,8 +1,10 @@
 ---
 name: quark-lazy-cli
 description: >-
-  QAS/Quark lazy subscription maintenance skill with qslazy CLI guidance,
-  advisor modes, scheduled reports, and failed-update repair workflows.
+  基于 QAS（夸克网盘自动转存项目）的懒人追剧、追番 SKILL，也内置了一个 CLI 工具。即使 QAS
+  的剧集订阅失效，它也可以重新搜索资源、探查多级资源目录，并在多个最新候选资源中按用户偏好（如更高清晰度）转存新剧集和缺失剧集。可以交给本地
+  OpenClaw、Hermes Agent 或其他Claude Code, Codex Agent 使用，用来设置定时任务、定时汇报，并在订阅失败时辅助修复。有 Python
+  运行环境的进阶用户，也可以把它当作命令行工具使用。
 ---
 
 # quark-lazy-cli
@@ -15,21 +17,12 @@ description: >-
 
 `LAZY_CLI_ADVISOR` 是网盘资源搜索后的决策机制，用来决定候选资源怎么选，不是聊天模式。
 
-- `code`：用代码规则自动决策。适合后台任务、资源发布规范的剧集、资源目录有“更新至n集”；速度快，无需交互，不消耗 LLM Token。可配合 `--add-prompt "kword=..."` 对顾问选出的分享链接标题做硬过滤，例如只保留 `臻彩MAX+` 版本。
+- `code`：用代码规则自动决策。适合后台任务、资源发布规范的剧集、资源目录有“更新至n集”；速度快，无需交互，不消耗 LLM Token。
 - `llm`：后台任务中引入大模型做资源选择。适合多版本编号冲突等复杂资源；可配合 `--add-prompt` 改AI大模型定制判断规则。例如：让大模型帮你判断是动漫还是真人版的剧集、你订阅任务是剧集的中文名称，告诉大模型剧集的英文名称等。
 - `agent`：由当前 Agent 在和用户交互过程中判断候选资源。适合复杂场景的临时更新，或者在Openclaw Heateat机制里，维护和修复复杂订阅更新的场景使用。记得让Agent更新时，要求看订阅剧集.md文档中，你对剧集转存的要求。
 - `human`：用户人工选择。适合用户想亲自确认资源的场景。
 
 详细用法读取：`references/顾问模式.md`。
-
-`code` 模式的 `kword=` 快速语法：
-
-- `kword=臻彩MAX+`：只保留标题命中“臻彩MAX+”的分享链接。
-- `kword=臻彩MAX+|臻彩 MAX+`：`|` 表示 OR，命中任一组即可。
-- `kword=4K&臻彩MAX+`：`&` 表示 AND，同组关键词都要命中。
-- `kword=臻彩MAX+&更新13集|臻彩MAX+&更至EP13`：支持 OR + AND 组合。
-
-匹配会忽略空格和大小写，只过滤分享链接标题，不过滤目录文件名。过滤后会把最新集数收敛到保留下来的分享链接标题。
 
 ## 安装
 
@@ -182,7 +175,7 @@ LAZY_CLI_ADVISOR=code qslazy update all 凡人修仙传 --env <skills-dir>/quark
 
 用于：
 - 理解 `code / llm / agent / human` 顾问模式
-- 使用 `--add-prompt`，包括 `code` 模式的 `kword=` 硬过滤和 `llm` 模式的自然语言提示
+- 使用 `--add-prompt`
 - 处理 Agent JSON 决策
 
 ## 铁律
